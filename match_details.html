@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .match-header {
+            margin-bottom: 20px;
+        }
+        .match-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .match-subtitle {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .nav-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tab.active {
+            border-bottom: 2px solid #ffd700;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .stats-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-category {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .back-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background-color: #000;
+            margin-bottom: 20px;
+        }
+        .video-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .star-rating {
+            font-size: 24px;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="goBack()">← Back to Matches</button>
+        <div class="match-header">
+            <h1 class="match-title">Sports zone - 28th Aug 2024</h1>
+            <h2 class="match-subtitle">Football</h2>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="stats">Stats</div>
+            <div class="nav-tab" data-tab="highlights">Highlights</div>
+        </div>
+        
+        <div id="stats" class="content-section active">
+            <div class="stats-card">
+                <div class="stat-category">Shooting</div>
+                <div class="stat-item"><span>Goals</span><span>1</span></div>
+                <div class="stat-item"><span>Shots</span><span>4</span></div>
+                <div class="stat-item"><span>Shots on Target</span><span>2</span></div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-category">Passing</div>
+                <div class="stat-item"><span>Assists</span><span>2</span></div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-category">Possession</div>
+                <div class="stat-item"><span>Successful Dribbles</span><span>4</span></div>
+                <div class="stat-item"><span>Successful Dribbles %</span><span>42%</span></div>
+            </div>
+            <div class="stats-card">
+                <div class="stat-category">Defending</div>
+                <div class="stat-item"><span>Tackles won</span><span>8</span></div>
+                <div class="stat-item"><span>Tackles won %</span><span>45%</span></div>
+            </div>
+        </div>
+        
+        <div id="highlights" class="content-section">
+            <div class="video-container">
+                <img src="https://example.com/football-field.jpg" alt="Football field">
+                <div class="video-overlay">Official highlights</div>
+                <div class="video-duration">8:00</div>
+            </div>
+            <div class="star-rating">
+                ★★★☆☆
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contentSections.forEach(cs => cs.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(tabName).classList.add('active');
+                });
+            });
+        });
+
+        function goBack() {
+            window.location.href = 'profile.html?tab=matches';
+        }
+    </script>
+</body>
+</html>

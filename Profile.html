@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Khadra Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .profile-name {
+            font-size: 24px;
+            flex-grow: 1;
+        }
+        .settings-icon {
+            font-size: 24px;
+        }
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .nav-tab {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .nav-tab.active {
+            border-bottom: 2px solid #ffd700;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .info-card, .stats-card, .highlights-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .add-match-btn {
+            background-color: #ffd700;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .dropdown {
+            background-color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .match-item, .stat-item, .highlight-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        .highlight-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="https://example.com/marco-khadra.jpg" alt="Marco Khadra" class="profile-pic">
+            <h1 class="profile-name">Marco Khadra</h1>
+            <span class="settings-icon">⚙️</span>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="profile">Profile</div>
+            <div class="nav-tab" data-tab="matches">Matches</div>
+            <div class="nav-tab" data-tab="stats">Stats</div>
+            <div class="nav-tab" data-tab="highlights">Highlights</div>
+        </div>
+        
+        <div id="profile" class="content-section active">
+            <div class="info-card">
+                <div class="info-item"><span>Height</span><span>180 cm</span></div>
+                <div class="info-item"><span>Age</span><span>24 years</span></div>
+                <div class="info-item"><span>Country</span><span>🇱🇧 LEB</span></div>
+                <div class="info-item"><span>Preferred arm</span><span>Right</span></div>
+                <div class="info-item"><span>Preferred foot</span><span>Left</span></div>
+            </div>
+            <button class="add-match-btn">Add Match</button>
+            <div class="stats-card">
+                <h3>Sports Stats</h3>
+                <div class="stat-item">Football ></div>
+                <div class="stat-item">Padel ></div>
+                <div class="stat-item">Basketball ></div>
+            </div>
+            <div class="highlights-card">
+                <h3>Sports Highlights</h3>
+                <div class="highlight-item">Basketball ></div>
+            </div>
+        </div>
+        
+        <div id="matches" class="content-section">
+            <div class="dropdown">All ▼</div>
+            <div class="match-item">
+                <div>Sports Zone</div>
+                <div>28th Aug 2024</div>
+                <div>Football</div>
+            </div>
+            <!-- Add more match items here -->
+        </div>
+        
+        <div id="stats" class="content-section">
+            <div class="dropdown">Football ▼</div>
+            <div class="stats-card">
+                <h3>Shooting</h3>
+                <div class="stat-item">Goals: 9</div>
+                <div class="stat-item">Shots: 42</div>
+                <div class="stat-item">Shots on Target: 20</div>
+                <!-- Add more stats here -->
+            </div>
+        </div>
+        
+        <div id="highlights" class="content-section">
+            <div class="dropdown">All ▼</div>
+            <div class="highlight-item">
+                <img src="https://example.com/football-field.jpg" alt="Football field">
+                <div>Sports Zone - 28th Aug 2024</div>
+                <div>Football</div>
+            </div>
+            <!-- Add more highlight items here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contentSections.forEach(cs => cs.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(tabName).classList.add('active');
+                });
+            });
+    
+            const addMatchBtn = document.querySelector('.add-match-btn');
+            addMatchBtn.addEventListener('click', function() {
+                // Navigate to the Submit Match page
+                window.location.href = 'match.html';
+            });
+    
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', function() {
+                    alert('Dropdown options would appear here');
+                });
+            });
+    
+            const matchItems = document.querySelectorAll('.match-item');
+matchItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // Navigate to the match details page
+        window.location.href = 'match_details.html';
+    });
+});
+
+            const statItems = document.querySelectorAll('.stat-item');
+            statItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    alert('Detailed stats for ' + this.textContent + ' would show here');
+                });
+            });
+            
+            function activateTab(tabName) {
+        const tab = document.querySelector(`.nav-tab[data-tab="${tabName}"]`);
+        if (tab) {
+            tab.click();
+        }
+    }
+
+    // Check for URL parameters on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    if (tabParam) {
+        activateTab(tabParam);
+    }
+
+            
+            const highlightItems = document.querySelectorAll('.highlight-item');
+            highlightItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    alert('Full highlight video would play here');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
